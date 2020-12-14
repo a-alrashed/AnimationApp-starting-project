@@ -22,6 +22,11 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var venusImage: UIImageView!
     @IBOutlet weak var rocketImage: UIImageView!
     
+    @IBOutlet weak var signinCenterxLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var signinCenteryLayoutConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var signupCenterxLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var signupCenteryLayoutConstraint: NSLayoutConstraint!
     
     // sign in
     @IBOutlet weak var signinUsernameTextField: UITextField!
@@ -36,7 +41,39 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        floatingAnimation(targetView: worldImage, distance: 20)
+        floatingAnimation(targetView: moonImage , distance: 15)
+        floatingAnimation(targetView: jupiterImage , distance: 100)
+        floatingAnimation(targetView: venusImage   , distance: 50)
+        floatingAnimation(targetView: neptuneImage , distance: 80)
+        
+        rotate360Animation(targetView: worldImage)
+        rotate360Animation(targetView: moonImage)
+        rotate360Animation(targetView: jupiterImage)
+        rotate360Animation(targetView: venusImage)
+        rotate360Animation(targetView: neptuneImage)
         setupViews()
+    }
+    
+    func floatingAnimation(targetView: UIImageView , distance: CGFloat) {
+        UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse]) {
+            targetView.center.y += distance
+        }
+
+    }
+    
+    func rotate360Animation(targetView: UIImageView) {
+        UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
+            targetView.transform = CGAffineTransform.identity.rotated(by: .pi  )
+        } completion: { (_) in
+            UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
+                targetView.transform = CGAffineTransform.identity.rotated(by: .pi * 2 )
+            } completion: { (_) in
+                self.rotate360Animation(targetView: targetView)
+            }
+
+        }
+
     }
     
     
@@ -67,8 +104,37 @@ class AuthViewController: UIViewController {
     
     @IBOutlet weak var registrationSwitch: UISegmentedControl!
     @IBAction func switchDidChangeValue(_ sender: Any) {
-        
+        switch registrationSwitch.selectedSegmentIndex {
+        case 0:
+            // show the sign in view
+        print("show the sign in view")
+            UIView.animate(withDuration: 1) {
+                self.signinView.alpha = 1
+                self.signupView.alpha = 0
+                self.signupCenterxLayoutConstraint.constant = -self.view.frame.width
+                self.signupCenteryLayoutConstraint.constant = -self.view.frame.height
+                self.signinCenterxLayoutConstraint.constant = 0
+                self.signinCenteryLayoutConstraint.constant = 0
+                self.view.layoutIfNeeded()
+            }
+            
+        case 1:
+            print("show the sign up view")
+            UIView.animate(withDuration: 1) {
+                self.signupView.alpha = 1
+                self.signinView.alpha = 0
+                self.signupCenterxLayoutConstraint.constant = 0
+                self.signupCenteryLayoutConstraint.constant = 0
+                self.signinCenterxLayoutConstraint.constant = self.view.frame.width
+                self.signinCenteryLayoutConstraint.constant = self.view.frame.height
+                self.view.layoutIfNeeded()
+            }
+            
+        default:
+            print("error")
+        }
     }
+    
     
     @IBAction func signinButton(_ sender: Any) {
         

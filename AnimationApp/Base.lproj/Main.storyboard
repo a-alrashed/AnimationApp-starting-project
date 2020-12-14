@@ -268,10 +268,14 @@
                         <outlet property="registrationSwitch" destination="Ve0-fc-aCD" id="fGQ-va-g6a"/>
                         <outlet property="rocketImage" destination="OFw-o2-xzW" id="dpB-BI-9uS"/>
                         <outlet property="signinButton" destination="EMj-vF-mgG" id="eKJ-1V-MCi"/>
+                        <outlet property="signinCenterxLayoutConstraint" destination="GgE-au-BgJ" id="rMF-9x-lpr"/>
+                        <outlet property="signinCenteryLayoutConstraint" destination="3qU-6i-KD1" id="zbf-Zz-uBa"/>
                         <outlet property="signinPasswordTextField" destination="tWD-6A-agZ" id="j4B-WR-nfP"/>
                         <outlet property="signinUsernameTextField" destination="uWO-w6-JRD" id="PwG-Xy-VfY"/>
                         <outlet property="signinView" destination="xUi-zK-dRE" id="g3S-Fz-uQz"/>
                         <outlet property="signupButton" destination="O5M-gH-tkq" id="WgX-Tm-ZZy"/>
+                        <outlet property="signupCenterxLayoutConstraint" destination="dcQ-Xu-VkX" id="20x-cx-dkc"/>
+                        <outlet property="signupCenteryLayoutConstraint" destination="LeS-l8-L3O" id="RyZ-GW-N8o"/>
                         <outlet property="signupEmailTextField" destination="7XK-Ry-vJF" id="ujc-Gg-5JV"/>
                         <outlet property="signupPasswordTextField" destination="62q-n0-8fF" id="DNh-wY-HI2"/>
                         <outlet property="signupUsernameTextField" destination="bgf-n5-l1v" id="F0l-iX-dZ9"/>
